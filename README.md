@@ -23,3 +23,39 @@ will also be having a bruno collection or a http file with the api endpoints of 
 
 Any Coding Agent will be used?
 NO...
+
+### Technologies
+
+- Database PostgreSQL - ORM = GORM
+- LLMs = Deepseek's Flash (for development phase)
+- Broker API = Upstocks API / Angel One
+- Programming Language = Golang
+- Containerization = Docker
+
+#### Database setup
+
+Install the golang-migration tool for database migrations
+
+```bash
+go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
+```
+
+install the ORM (GORM)
+
+```bash
+go get -u gorm.io/gorm
+go get -u gorm.io/driver/postgres
+```
+
+#### Create the migration scripts
+
+```bash
+migrate create -ext sql -dir migrations <name>
+
+```
+
+#### Run the migration scripts
+
+```bash
+migrate -path ./migrations -database "postgres://pradeep:password@localhost:5432/stocks?sslmode=disable" up
+```

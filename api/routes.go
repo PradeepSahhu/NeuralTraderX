@@ -5,6 +5,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func RegisterApiRoutes(router *gin.Engine) {
+func RegisterHealthApiRoutes(router *gin.Engine) {
 	router.GET("/health", handler.HealthCheck)
+}
+
+func RegisterBasicRoutes(router *gin.Engine) {
+	router.GET("/status", handler.HealthCheck)
 }

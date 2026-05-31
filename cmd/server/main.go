@@ -8,7 +8,8 @@ import (
 func main() {
 
 	router := gin.Default()
-	api.RegisterApiRoutes(router)
+	api.RegisterHealthApiRoutes(router)
+	api.RegisterBasicRoutes(router)
 
 	router.Run(":3000")
 }
