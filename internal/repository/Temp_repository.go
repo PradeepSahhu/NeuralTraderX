@@ -15,12 +15,11 @@ func NewTempRepository(db *gorm.DB) *TempRepository {
 	}
 }
 
-func (r *TempRepository) CreateTemp(firstName, lastName, createdAt string) error {
+func (r *TempRepository) CreateTemp(firstName, lastName string) error {
 	temp := models.Temp{
 		FirstName: firstName,
 		LastName:  lastName,
-		CreatedAt: createdAt,
 	}
 
-	return r.db.Create(temp).Error
+	return r.db.Omit("CreatedAt").Create(&temp).Error
 }

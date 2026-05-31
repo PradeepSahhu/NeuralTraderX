@@ -6,3 +6,7 @@ type Temp struct {
 	LastName  string `gorm:"column:lastname"`
 	CreatedAt string `gorm:"column:created_at"`
 }
+
+func (Temp) TableName() string {
+	return "temp"
+}
