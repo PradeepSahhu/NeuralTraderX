@@ -17,5 +17,5 @@ func NewTempRepository(db *gorm.DB) *TempRepository {
 
 func (r *TempRepository) CreateTemp(temp *models.Temp) error {
 
-	return r.db.Omit("CreatedAt").Create(&temp).Error
+	return r.db.Omit("CreatedAt").Create(temp).Error
 }
