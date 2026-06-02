@@ -8,20 +8,31 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// need : repository need -> handler -> routes
+
+// db -> repository -> handler -> routes register karna hai
 func main() {
 
 	router := gin.Default()
-	api.RegisterHealthApiRoutes(router)
 
 	// database GORM
 	db := database.RegisterPostgresSql()
+
+	// repo creation
 	tempRepo := repository.NewTempRepository(db)
-	// if err := tempRepo.CreateTemp("sandeep", "singh"); err != nil {
-	// 	log.Fatalf("failed to create temp row: %v", err)
-	// }
+
+	// handler creation
 	tempHandler := handler.NewTempHandler(tempRepo)
 
-	api.RegisterBasicRoutes(router, tempHandler)
+	registrars := []api.RouteRegistrar{
+		tempHandler,
+	}
+
+	apiGroup := router.Group("/api/v1")
+
+	for _, r := range registrars {
+		r.RegisterRoutes(apiGroup)
+	}
 
 	router.Run(":3000")
 }

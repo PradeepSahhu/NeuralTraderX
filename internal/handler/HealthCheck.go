@@ -1,13 +1,15 @@
 package handler
 
 import (
-	"net/http"
-
-	"github.com/gin-gonic/gin"
+	"github.com/PradeepSahhu/NeuralTraderX/internal/repository"
 )
 
-func HealthCheck(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"Status": "Working",
-	})
+type HealthHandler struct {
+	repo repository.TempRepository
 }
+
+// func HealthCheck(c *gin.Context) {
+// 	c.JSON(http.StatusOK, gin.H{
+// 		"Status": "Working",
+// 	})
+// }
