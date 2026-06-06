@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
-	"log"
 
-	"github.com/PradeepSahhu/NeuralTraderX/LLM/llm"
-	"github.com/tmc/langchaingo/llms"
+	"github.com/PradeepSahhu/NeuralTraderX/internal/database"
+	repository "github.com/PradeepSahhu/NeuralTraderX/scripts/Internal/Repository"
 )
 
 func main() {
@@ -27,12 +26,25 @@ func main() {
 	// 	log.Fatal(err)
 	// }
 	// fmt.Println(response)
-	ll, ctx := llm.CreateLLM()
 
-	response, err := llms.GenerateFromSinglePrompt(ctx, ll, "Hello how are you? are you claude?")
+	db := database.RegisterPostgresSql()
+
+	repo := repository.New(db)
+
+	stocks, err := repo.GetAllStocks()
+
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println("somethign wrnt wrong")
 	}
-	fmt.Println(response)
+
+	fmt.Println(stocks)
+
+	// ll, ctx := llm.CreateLLM()
+
+	// response, err := llms.GenerateFromSinglePrompt(ctx, ll, "Hello how are you? are you claude?")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// fmt.Println(response)
 
 }
