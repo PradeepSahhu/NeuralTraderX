@@ -27,3 +27,16 @@ func (r *StocksRepository) GetAllStocks() ([]models.Stocks, error) {
 	return stock, nil
 
 }
+
+func (r *StocksRepository) FindById(id uint) (models.Stocks, error) {
+
+	var stock models.Stocks
+
+	err := r.db.Where("id = ?", id).First(&stock).Error
+
+	if err != nil {
+		return stock, err
+	}
+
+	return stock, nil
+}

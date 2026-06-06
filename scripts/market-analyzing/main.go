@@ -31,7 +31,8 @@ func main() {
 
 	repo := repository.New(db)
 
-	stocks, err := repo.GetAllStocks()
+	// stocks, err := repo.GetAllStocks()
+	stocks, err := repo.FindById(2)
 
 	if err != nil {
 		fmt.Println("somethign wrnt wrong")
