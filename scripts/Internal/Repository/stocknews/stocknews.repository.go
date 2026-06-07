@@ -3,6 +3,7 @@ package stocknews
 import (
 	"github.com/PradeepSahhu/NeuralTraderX/scripts/Internal/models"
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 type StockNewsRepository struct {
@@ -16,7 +17,7 @@ func New(db *gorm.DB) *StockNewsRepository {
 }
 
 func (r *StockNewsRepository) InsertBatchStockNews(stocknews []*models.StockNews) (bool, error) {
-	result := r.db.Create(stocknews)
+	result := r.db.Clauses(clause.OnConflict{DoNothing: true}).Create(stocknews)
 	if result.Error != nil {
 		return false, result.Error
 	}
