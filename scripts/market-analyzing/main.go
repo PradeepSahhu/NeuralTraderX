@@ -1,11 +1,6 @@
 package main
 
-import (
-	"fmt"
-
-	"github.com/PradeepSahhu/NeuralTraderX/internal/database"
-	repository "github.com/PradeepSahhu/NeuralTraderX/scripts/Internal/Repository"
-)
+import news "github.com/PradeepSahhu/NeuralTraderX/scripts/Internal/News"
 
 func main() {
 
@@ -27,18 +22,20 @@ func main() {
 	// }
 	// fmt.Println(response)
 
-	db := database.RegisterPostgresSql()
+	// db := database.RegisterPostgresSql()
 
-	repo := repository.New(db)
+	// repo := repository.New(db)
 
-	// stocks, err := repo.GetAllStocks()
-	stocks, err := repo.FindById(2)
+	// // stocks, err := repo.GetAllStocks()
+	// stocks, err := repo.FindById(2)
 
-	if err != nil {
-		fmt.Println("somethign wrnt wrong")
-	}
+	// if err != nil {
+	// 	fmt.Println("somethign wrnt wrong")
+	// }
 
-	fmt.Println(stocks)
+	// fmt.Println(stocks)
+
+	news.GoogleRssFeed("RELIANCE INDUSTRIES", "RELIANCE")
 
 	// ll, ctx := llm.CreateLLM()
 
