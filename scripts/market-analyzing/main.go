@@ -1,6 +1,9 @@
 package main
 
-import news "github.com/PradeepSahhu/NeuralTraderX/scripts/Internal/News"
+import (
+	"github.com/PradeepSahhu/NeuralTraderX/scripts/Internal/database"
+	"github.com/PradeepSahhu/NeuralTraderX/scripts/Internal/service"
+)
 
 func main() {
 
@@ -22,7 +25,9 @@ func main() {
 	// }
 	// fmt.Println(response)
 
-	// db := database.RegisterPostgresSql()
+	db := database.RegisterPostgresSql()
+
+	service.NewsProcessing(db)
 
 	// repo := repository.New(db)
 
@@ -35,7 +40,7 @@ func main() {
 
 	// fmt.Println(stocks)
 
-	news.GoogleRssFeed("RELIANCE INDUSTRIES", "RELIANCE")
+	// news.GoogleRssFeed("RELIANCE INDUSTRIES", "RELIANCE")
 
 	// ll, ctx := llm.CreateLLM()
 

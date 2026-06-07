@@ -12,3 +12,7 @@ type StockSentiment struct {
 	Source         string    `gorm:"column:source"`
 	UpdatedOn      time.Time `gorm:"column:updated_on"`
 }
+
+func (s *StockSentiment) TableName() string {
+	return "stocksentiment"
+}
