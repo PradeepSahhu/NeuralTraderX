@@ -10,6 +10,6 @@ CREATE TABLE stocknews(
     link TEXT NOT NULL UNIQUE,
     source VARCHAR(200),
     is_processed BOOLEAN NOT NULL DEFAULT FALSE,
-    published_at TIMESTAMPZ,
-    stored_at TIMESTAMPZ NOT NULL DEFAULT NOW()
+    published_at TIMESTAMPTZ,
+    stored_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
