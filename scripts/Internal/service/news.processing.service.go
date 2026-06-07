@@ -28,6 +28,12 @@ func NewsProcessing(db *gorm.DB) {
 			continue
 
 		}
+
+		if len(stockNews) == 0 {
+			fmt.Println("No recent news found for", stock.Symbol)
+			continue
+		}
+
 		success, err := stockNewsRepo.InsertBatchStockNews(stockNews)
 
 		if err != nil {
@@ -35,7 +41,7 @@ func NewsProcessing(db *gorm.DB) {
 			return
 		}
 
-		if success == true {
+		if success {
 			fmt.Println("Successfully inserted batch of", stock.Symbol)
 		}
 

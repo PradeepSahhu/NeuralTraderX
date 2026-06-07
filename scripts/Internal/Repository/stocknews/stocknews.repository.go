@@ -17,6 +17,10 @@ func New(db *gorm.DB) *StockNewsRepository {
 }
 
 func (r *StockNewsRepository) InsertBatchStockNews(stocknews []*models.StockNews) (bool, error) {
+	if len(stocknews) == 0 {
+		return false, nil
+	}
+
 	result := r.db.Clauses(clause.OnConflict{DoNothing: true}).Create(stocknews)
 	if result.Error != nil {
 		return false, result.Error

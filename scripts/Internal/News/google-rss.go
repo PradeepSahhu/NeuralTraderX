@@ -3,6 +3,7 @@ package news
 import (
 	"fmt"
 	"net/url"
+	"strings"
 	"time"
 
 	"github.com/PradeepSahhu/NeuralTraderX/scripts/Internal/models"
@@ -40,13 +41,13 @@ func GoogleRssFeed(id uint, stock, symbol string) ([]*models.StockNews, error) {
 
 func mapToStockNews(feeds []*gofeed.Item, stockId uint) []*models.StockNews {
 	var stockNews []*models.StockNews
+
+	oneWeekBefore := time.Now().AddDate(0, 0, -7)
 	for _, feed := range feeds {
-		source := "Google News"
-		if feed.Link != "" {
-			if u, err := url.Parse(feed.Link); err == nil && u.Hostname() != "" {
-				source = u.Hostname()
-			}
+		if feed.PublishedParsed == nil || feed.PublishedParsed.Before(oneWeekBefore) {
+			continue
 		}
+		source := feed.Title[strings.LastIndex(feed.Title, "-")+1:]
 
 		news := &models.StockNews{
 			Title:       feed.Title,
