@@ -24,9 +24,9 @@ func GoogleRssFeed(id uint, stock, symbol string) ([]*models.StockNews, error) {
 		return nil, err
 	}
 
-	// fmt.Printf("%+v\n", *feeds.Items[0])
+	fmt.Printf("%+v\n", *feeds.Items[0])
 
-	stockNews := mapToStockNews(feeds.Items, id)
+	// stockNews := mapToStockNews(feeds.Items, id)
 	// 	fmt.Print(f.)
 	// 	fmt.Println(f.Title)
 	// 	fmt.Println(f.Description)
@@ -35,7 +35,8 @@ func GoogleRssFeed(id uint, stock, symbol string) ([]*models.StockNews, error) {
 
 	// fmt.Println(feeds)
 
-	return stockNews, nil
+	// return stockNews, nil
+	return nil, nil
 
 }
 
