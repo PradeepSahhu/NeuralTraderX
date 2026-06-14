@@ -59,3 +59,7 @@ migrate create -ext sql -dir migrations <name>
 ```bash
 migrate -path ./migrations -database "postgres://pradeep:password@localhost:5432/stocks?sslmode=disable" up
 ```
+
+### Future Plans
+
+- build own news api to get the news, currently there is no unlimited news api available,
