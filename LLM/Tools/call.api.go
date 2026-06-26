@@ -28,7 +28,6 @@ func (c CustomTool) Call(ctx context.Context, input string) (string, error) {
 // Link : https://rss.nytimes.com/services/xml/rss/nyt/YourMoney.xml
 
 func NewsCall(llm *openai.LLM, ctx context.Context) {
-	api_key := "REMOVED_API_KEY"
 
 	// Create tools
 	tools := []tools.Tool{
